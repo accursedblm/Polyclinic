@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/Qss">
+        <file>styles/style.qss</file>
+    </qresource>
+    <qresource prefix="/Res">
+        <file>res/background.jpg</file>
+        <file>res/background.svg</file>
+        <file>res/downarrow.png</file>
+        <file>res/uparrow.png</file>
+        <file>res/icon.ico</file>
+        <file>res/medical.gif</file>
+    </qresource>
+    <qresource prefix="/.qm">
+        <file>.qm/qt_ru.qm</file>
+        <file>.qm/qtbase_ru.qm</file>
+    </qresource>
+</RCC>

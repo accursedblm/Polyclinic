@@ -1,0 +1,435 @@
+/*PechnikovViktor_file_QSS*/
+
+/* *********************************************** */
+/* *********************************************** */
+/*                    ПЕРЕМЕННЫЕ                   */
+/* *********************************************** */
+/* *********************************************** */
+$text = #222;
+$color0 = #FFFFFF;
+$color1 = #EAEFE9;
+$color2 = #D4F1EC;
+$color3 = #A0F1EB;
+$color4 = #52A29D;
+$color5 = #83D9DA;
+$Background_color = #6B9BA7;
+$Background_image = url(:/Res/res/background.svg);
+$focused = #D4F1EC;
+$selected = #D4F1EC;
+$pressed = #83D9DA;
+$grad1a = #EEEEEF;
+$grad1b = #DADADF;
+$border_color = #52A29D;
+$reserved_items = #FF0000;
+$notreserved_items = #00FF00;
+
+
+/* *********************************************** */
+/* *********************************************** */
+/*                    QSS Стиль                    */
+/* *********************************************** */
+/* *********************************************** */
+
+* {
+  font-family: ISOCPEUR;
+  font-size: 14px;
+  /*font-weight: Normal;*/
+}
+
+QWidget#centralwidget {
+    background-color: $Background_color;
+}
+
+QLabel#label_background{
+    border-image: $Background_image 0 0 0 0 stretch stretch;
+}
+
+QStatusBar#statusbar {
+    background-color: $Background_color;
+}
+
+/* =============================================== */
+/*                     Button                      */
+/* =============================================== */
+
+QPushButton {
+    background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                                  stop:0 $color0, stop:1 $color2);
+    border: 1px solid $border_color;
+    border-radius: 3px;
+    padding: 5px 5px 5px 5px;
+}
+
+QPushButton:hover{
+    background-color: $selected;
+    border-color: $border_color;
+}
+
+QPushButton:pressed {
+    background-color: $pressed;
+    border-style: inset;
+    padding: 7px 5px 5px 7px;
+    /*padding-left: 6px;
+    padding-top: 6px;
+    padding-right: 3px;
+    padding-bottom: 3px;*/
+}
+
+/* =============================================== */
+/*                     QMenuBar                    */
+/* =============================================== */
+
+QMenuBar {
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                      stop:0 $color1, stop:1 $color4);
+    padding: 5px 5px 5px 5px;
+}
+
+QMenuBar::item {
+    spacing: 3px; /* интервал между пунктами меню */
+    padding: 4px 4px 4px 4px;
+    background: $color1; /*transparent*/
+    border-radius: 4px;
+}
+
+QMenuBar::item:selected {
+/* когда выделено с помощью мыши или клавиатуры */
+    background: $color4;
+}
+
+QMenuBar::item:pressed {
+    background: $Background_color;
+}
+
+/* =============================================== */
+/*                     QMenu                       */
+/* =============================================== */
+
+QMenu {
+    background-color: $color2;
+    border: 1px solid $border_color;
+    border-radius: 3px;
+}
+
+QMenu::item {
+    background-color: transparent;
+}
+
+QMenu::item:selected {
+    background-color: $color5;
+}
+
+/* =============================================== */
+/*                     QDialog                     */
+/* =============================================== */
+
+QDialog {
+    background-color: $color2;
+}
+
+/* =============================================== */
+/*                     QDateEdit                   */
+/* =============================================== */
+
+QDateEdit {
+    background-color: $color0;
+    border: 1px solid $border_color;
+    border-radius: 4px;
+    padding: 3px 3px 3px 3px;
+}
+
+QDateEdit::down-arrow {
+    image: url(:/Res/res/downarrow.png);
+}
+
+QDateEdit::up-arrow {
+    image: url(:/Res/res/uparrow.png);
+}
+
+
+/* =============================================== */
+/*                     QLineEdit                   */
+/* =============================================== */
+
+QLineEdit {
+    background-color: $color0;
+    border: 1px solid $border_color;
+    border-radius: 4px;
+    padding: 3px 3px 3px 3px;
+}
+
+/* =============================================== */
+/*                     QComboBox                   */
+/* =============================================== */
+
+QComboBox {
+    background-color: $color0;
+    border: 1px solid $border_color;
+    border-radius: 4px;
+    padding: 3px 3px 3px 3px;
+}
+
+/* QComboBox получает состояние "on",
+когда всплывающий список раскрыт */
+QComboBox:!editable:on, QComboBox::drop-down:editable:on {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 $color0, stop: 0.4 $color2,
+                                stop: 1.0 $color5);
+}
+
+QComboBox:on {
+/* сдвиг текста, когда раскрывается всплывающий список */
+    padding-top: 3px;
+    padding-left: 4px;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-left-width: 1px;
+    border-left-color: $border_color;
+    border-left-style: solid;
+    /* только одна линия */
+    border-top-right-radius: 4px;
+    /* тот же радиус закругления что и у QComboBox */
+    border-bottom-right-radius: 4px;
+}
+
+QComboBox::down-arrow {
+    image: url(:/Res/res/downarrow.png);
+}
+
+QComboBox::down-arrow:on {
+/* сдвиг стрелки, когда раскрывается всплывающий список */
+    top: 1px;
+    left: 1px;
+}
+/*Всплывающий список в QComboBox - это
+QAbstractItemView и стиль к нему применяется с
+использованием селектора потомка (descendant selector):*/
+
+QComboBox QAbstractItemView {
+    border: 2px solid darkgray;
+    selection-background-color: $color3;
+}
+
+/* =============================================== */
+/*                     QTimeEdit                   */
+/* =============================================== */
+
+QTimeEdit {
+    background-color: $color0;
+    border: 1px solid $border_color;
+    border-radius: 4px;
+    padding: 3px 3px 3px 3px;
+}
+
+QTimeEdit::down-arrow {
+    image: url(:/Res/res/downarrow.png);
+}
+
+QTimeEdit::up-arrow {
+    image: url(:/Res/res/uparrow.png);
+}
+
+/* =============================================== */
+/*                     QCheckBox                   */
+/* =============================================== */
+
+QCheckBox {
+    background-color: $color0;
+    border: 1px solid $border_color;
+    border-radius: 4px;
+}
+
+QCheckBox::indicator {
+    width: 18px;
+    height: 18px;
+}
+
+/* =============================================== */
+/*                   QTableWidget                  */
+/* =============================================== */
+
+QHeaderView::section{
+    background-color: $color4;
+    color:#ffffff;
+}
+
+QTableWidget::item:selected{
+    background-color: $color4;
+}
+
+/* =============================================== */
+/*                   QScrollBar                    */
+/* =============================================== */
+
+/* ----------------- Horizontal ------------------ */
+QScrollBar:horizontal {
+    border: 1px solid grey;
+    background: $color4;
+    height: 15px;
+    margin: 0px 20px 0 20px;
+}
+QScrollBar::handle:horizontal {
+    background: white;
+    min-width: 20px;
+}
+QScrollBar::add-line:horizontal {
+    border: 1px solid grey;
+    background: $color4;
+    width: 20px;
+    subcontrol-position: right;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::sub-line:horizontal {
+    border: 1px solid grey;
+    background: $color4;
+    width: 20px;
+    subcontrol-position: left;
+    subcontrol-origin: margin;
+}
+/* ----------------- Vertical ------------------- */
+QScrollBar:vertical {
+    border: 2px solid grey;
+    background: $color4;
+    width: 15px;
+    margin: 22px 0 22px 0;
+}
+QScrollBar::handle:vertical {
+    background: white;
+    min-height: 20px;
+}
+QScrollBar::add-line:vertical {
+    border: 2px solid grey;
+    background: $color4;
+    height: 20px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::sub-line:vertical {
+    border: 2px solid grey;
+    background: $color4;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+/* =============================================== */
+/*                   QTabWidget                    */
+/* =============================================== */
+
+QTabWidget::pane { /* Рамка виджета со вкладками */
+    border-top: 2px solid $border_color;
+}
+
+QTabWidget::tab-bar {
+    left: 5px; /* сдвигаем вправо на 5px */
+}
+
+/* Применяем стиль ко вкладке используя субэлемент
+    управления tab. Обратите внимание на то, что
+    оно читается как QTabBar, а _не_ QTabWidget */
+QTabBar::tab {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 $color0, stop: 0.4 $color2);
+    border: 2px solid $color5;
+    border-bottom-color: $border_color; /* такой же цвет как у панели */
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    min-width: 8ex;
+    padding: 5px;
+}
+
+QTabBar::tab:selected, QTabBar::tab:hover {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 $color0, stop: 0.4 $color2,
+                                stop: 1.0 $color5);
+}
+
+QTabBar::tab:selected {
+    border-color: $border_color;
+    border-bottom-color: $color3;
+}
+
+QTabBar::tab:!selected {
+    margin-top: 2px;
+    /* делаем невыбранные вкладки меньше */
+}
+
+/* воспользуемся отрицательными полями для
+перекрывания вкладок */
+QTabBar::tab:selected {
+    /* расширение/перекрытие слева и справа по 4px */
+    margin-left: -4px;
+    margin-right: -4px;
+}
+
+QTabBar::tab:first:selected {
+    margin-left: 0; /* первая выбранная вкладка
+    ничего не перекрывает слева от себя */
+}
+
+QTabBar::tab:last:selected {
+    margin-right: 0; /* последняя выбранная вкладка
+    ничего не перекрывает справа от себя */
+}
+
+QTabBar::tab:only-one {
+    margin: 0; /* если имеется только одна вкладка,
+    перекрывающиеся поля не нужны */
+}
+
+QTabBar::tab:disabled {
+    width: 0;
+    color: transparent;
+    border: none;
+    background-color: transparent;
+}
+
+
+/* =============================================== */
+/*                   QCalendarWidget               */
+/* =============================================== */
+
+
+QCalendarWidget QHeaderView {
+    qproperty-minimumSectionSize:0;
+}
+QCalendarWidget QMenu{
+    background-color: $color4;
+}
+#qt_calendar_calendarview {
+    background-color: $color0;
+    font: 16px;
+}
+#qt_calendar_monthbutton {
+    background-color: $color4;
+}
+#qt_calendar_yearbutton {
+    background-color: $color4;
+}
+#qt_calendar_yearedit {
+    background-color: $color4;
+}
+#qt_calendar_navigationbar {
+    background-color: $color4;
+}
+QToolButton#qt_calendar_prevmonth {
+    background: transparent;
+    /*border: none;*/
+    width: 40px;
+    /*qproperty-icon: url(:/images/images/btnPrevMonth.png);*/
+}
+QToolButton#qt_calendar_nextmonth {
+    background: transparent;
+    border: none;
+    width: 40px;
+    /*qproperty-icon: url(:/images/images/btnNextMonth.png);*/
+}
+QCalendarWidget QAbstractItemView {
+    color: $color4;
+}
